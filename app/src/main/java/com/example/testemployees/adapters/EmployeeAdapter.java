@@ -3,11 +3,13 @@ package com.example.testemployees.adapters;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.testemployees.R;
 import com.example.testemployees.pojo.Employee;
 
@@ -38,6 +40,9 @@ public class EmployeeAdapter extends RecyclerView.Adapter<EmployeeAdapter.Employ
         Employee employee = mEmployees.get(position);
         holder.mTextViewName.setText(employee.getFName());
         holder.mTextViewLastName.setText(employee.getLName());
+        Glide.with(holder.mImageView.getContext())
+                .load(employee.getAvatrUrl())
+                .into(holder.mImageView);
 
     }
 
@@ -50,11 +55,13 @@ public class EmployeeAdapter extends RecyclerView.Adapter<EmployeeAdapter.Employ
 
         private TextView mTextViewName;
         private TextView mTextViewLastName;
+        private ImageView mImageView;
 
         public EmployeeViewHolder(@NonNull View itemView) {
             super(itemView);
             mTextViewName = itemView.findViewById(R.id.text_view_name);
             mTextViewLastName = itemView.findViewById(R.id.text_view_last_name);
+            mImageView = itemView.findViewById(R.id.object_image);
 
         }
 
