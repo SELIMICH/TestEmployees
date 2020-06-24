@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.testemployees.R;
 import com.example.testemployees.pojo.Employee;
 
@@ -42,6 +43,10 @@ public class EmployeeAdapter extends RecyclerView.Adapter<EmployeeAdapter.Employ
         holder.mTextViewLastName.setText(employee.getLName());
         Glide.with(holder.mImageView.getContext())
                 .load(employee.getAvatrUrl())
+                .apply(new RequestOptions()
+                        .placeholder(R.drawable.ic_sentiment_very_satisfied_black_24dp)
+                        .centerCrop()
+                        .error(R.drawable.ic_sentiment_neutral_black_24dp))
                 .into(holder.mImageView);
 
     }
